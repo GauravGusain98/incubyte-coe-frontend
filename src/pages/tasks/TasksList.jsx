@@ -89,13 +89,13 @@ const TasksList = () => {
         </select>
       </div>
 
-      <table className="w-full border">
+      <table className="w-full table-fixed border">
         <thead className="bg-gray-200">
           <tr>
-            <th className="p-2 text-left">Name</th>
-            <th className="p-2 text-left">Priority</th>
-            <th className="p-2 text-left">Due Date</th>
-            <th className="p-2 text-left">Actions</th>
+            <th className="w-1/2 p-2 text-left">Name</th>
+            <th className="w-1/6 p-2 text-left">Priority</th>
+            <th className="w-1/6 p-2 text-left">Due Date</th>
+            <th className="w-1/6 p-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -108,10 +108,10 @@ const TasksList = () => {
           ) : (
             tasks.map((task) => (
               <tr key={task.id} className="border-b">
-                <td className="p-2 text-left">{task.name}</td>
-                <td className="p-2 text-left">{task.priority}</td>
-                <td className="p-2 text-left">{task.dueDate}</td>
-                <td className="p-2 text-left space-x-2">
+                <td className="w-1/2 p-2 text-left">{task.name}</td>
+                <td className="w-1/6 p-2 text-left">{task.priority}</td>
+                <td className="w-1/6 p-2 text-left">{task.dueDate}</td>
+                <td className="w-1/6 p-2 text-left space-x-2">
                   <Link to={`/tasks/edit/${task.id}`} className="text-primary-dark hover:underline">
                     Edit
                   </Link>
