@@ -30,7 +30,7 @@ const Register = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block mb-1 font-medium">Email</label>
+            <label className="flex justify-self-start mb-1 font-medium">Email</label>
             <input
               type="email"
               {...register('email', { required: 'Email is required' })}
@@ -40,7 +40,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Password</label>
+            <label className="flex justify-self-start mb-1 font-medium">Password</label>
             <input
               type="password"
               {...register('password', {
@@ -56,7 +56,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Confirm Password</label>
+            <label className="flex justify-self-start mb-1 font-medium">Confirm Password</label>
             <input
               type="password"
               {...register('confirmPassword', {

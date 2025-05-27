@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';  // Your Navbar component file
+import Navbar from './Navbar'; 
 
 const Layout = () => {
   return (
     <>
       <Navbar />
       <main>
-        <Outlet /> {/* renders the matched child route */}
+        <Outlet />
       </main>
     </>
   );
