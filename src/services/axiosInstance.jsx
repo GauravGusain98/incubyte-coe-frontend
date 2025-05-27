@@ -16,7 +16,7 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    const excludedPaths = ['/user/login', REFRESH_TOKEN_URL];
+    const excludedPaths = ['/user/login'];
     const isExcluded = excludedPaths.some(path =>
       originalRequest.url?.includes(path)
     );

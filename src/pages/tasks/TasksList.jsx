@@ -8,9 +8,9 @@ const TasksList = () => {
   const [pagination, setPagination] = useState({});
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
-    search: '',
-    sort_by: '',
-    sort_order: ''
+    search: null,
+    sortBy: null,
+    sortOrder: null
   });
 
   const fetchTasks = useCallback(async () => {
@@ -73,7 +73,7 @@ const TasksList = () => {
         />
         <select
           className="border w-[120px] p-2 rounded"
-          onChange={(e) => handleFilterChange('sort_by', e.target.value)}
+          onChange={(e) => handleFilterChange('sortBy', e.target.value)}
         >
           <option value="">Sort By</option>
           <option value="dueDate">Due Date</option>
@@ -81,7 +81,7 @@ const TasksList = () => {
         </select>
         <select
           className="border w-[130px] p-2 rounded"
-          onChange={(e) => handleFilterChange('sort_order', e.target.value)}
+          onChange={(e) => handleFilterChange('sortOrder', e.target.value)}
         >
           <option value="">Order</option>
           <option value="asc">Ascending</option>
@@ -108,14 +108,14 @@ const TasksList = () => {
           ) : (
             tasks.map((task) => (
               <tr key={task.id} className="border-b">
-                <td className="p-2">{task.name}</td>
-                <td className="p-2">{task.priority}</td>
-                <td className="p-2">{task.dueDate}</td>
-                <td className="p-2 space-x-2">
-                  <Link to={`/tasks/edit/${task.id}`} className="text-blue-500 hover:underline">
+                <td className="p-2 text-left">{task.name}</td>
+                <td className="p-2 text-left">{task.priority}</td>
+                <td className="p-2 text-left">{task.dueDate}</td>
+                <td className="p-2 text-left space-x-2">
+                  <Link to={`/tasks/edit/${task.id}`} className="text-primary-dark hover:underline">
                     Edit
                   </Link>
-                  <button onClick={() => handleDelete(task.id)} className="text-red-500 hover:underline">
+                  <button onClick={() => handleDelete(task.id)} className="text-danger-dark hover:underline">
                     Delete
                   </button>
                 </td>
