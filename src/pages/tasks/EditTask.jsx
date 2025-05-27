@@ -23,7 +23,7 @@ const EditTask = () => {
   }, [id]);
 
   return (
-    <div className="p-6 max-w-xl mx-auto">
+    <div className="py-4 max-w-xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Edit Task</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>

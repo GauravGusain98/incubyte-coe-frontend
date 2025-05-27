@@ -56,7 +56,7 @@ const TasksList = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="py-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Task List</h2>
         <Link to="/task/create" className="bg-brand-light text-white px-4 py-2 rounded hover:bg-brand-dark">
