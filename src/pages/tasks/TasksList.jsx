@@ -78,6 +78,7 @@ const TasksList = () => {
           <option value="">Sort By</option>
           <option value="dueDate">Due Date</option>
           <option value="priority">Priority</option>
+          <option value="name">Name</option>
         </select>
         <select
           className="border w-[130px] p-2 rounded"
