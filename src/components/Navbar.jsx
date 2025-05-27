@@ -13,12 +13,12 @@ const Navbar = () => {
     <nav className="bg-white shadow-md mb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link to="/" className="text-sm md:text-2xl font-bold text-blue-600 cursor-pointer">COE App</Link>
+          <Link to="/" className="text-sm md:text-2xl font-bold text-primary-dark cursor-pointer">COE App</Link>
           <div className="flex gap-4">
-            <Link to="/tasks" className="bg-blue-500 hover:bg-blue-600 text-white text-xs md:text-base font-semibold px-4 py-1.5 md:py-md-2 rounded-lg transition duration-300">Task Manager</Link>
+            <Link to="/tasks" className="bg-primary-light hover:bg-primary-dark text-white text-xs md:text-base font-semibold px-4 py-1.5 md:py-md-2 rounded-lg transition duration-300">Task Manager</Link>
             <button
               onClick={handleLogout}
-              className="bg-red-500 hover:bg-red-600 text-white font-semibold text-xs md:text-base px-4 py-1.5 md:py-2 rounded-lg transition duration-300"
+              className="bg-danger-light hover:bg-danger-dark text-white font-semibold text-xs md:text-base px-4 py-1.5 md:py-2 rounded-lg transition duration-300"
             >
               Logout
             </button>

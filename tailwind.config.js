@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors';
+
 export default {
   darkMode: 'class',
   content: [
@@ -8,6 +9,22 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: {
+          light: colors.blue[500],
+          dark: colors.blue[600]
+        },
+        secondary: {
+          light: colors.gray[500],
+          dark: colors.gray[600]
+        },
+        sucess: {
+          light: colors.green[500],
+          dark: colors.green[600]
+        },
+        danger: {
+          light: colors.red[500],
+          dark: colors.red[600]
+        },
         brand: {
           DEFAULT: '#1E40AF',
           light: '#60A5FA',
