@@ -92,7 +92,7 @@ const TasksList = () => {
       <table className="w-full table-fixed border">
         <thead className="bg-gray-200">
           <tr>
-            <th className="w-1/2 p-2 text-left">Name</th>
+            <th className="w-1/6 md:w-1/2 p-2 text-left">Name</th>
             <th className="w-1/6 p-2 text-left">Priority</th>
             <th className="w-1/6 p-2 text-left">Due Date</th>
             <th className="w-1/6 p-2 text-left">Actions</th>
@@ -108,7 +108,7 @@ const TasksList = () => {
           ) : (
             tasks.map((task) => (
               <tr key={task.id} className="border-b">
-                <td className="w-1/2 p-2 text-left">{task.name}</td>
+                <td className="w-1/6 md:w-1/2 p-2 text-left">{task.name}</td>
                 <td className="w-1/6 p-2 text-left">{task.priority}</td>
                 <td className="w-1/6 p-2 text-left">{task.dueDate}</td>
                 <td className="w-1/6 p-2 text-left space-x-2">
