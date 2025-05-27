@@ -17,7 +17,7 @@ export default {
           light: colors.gray[500],
           dark: colors.gray[600]
         },
-        sucess: {
+        success: {
           light: colors.green[500],
           dark: colors.green[600]
         },
