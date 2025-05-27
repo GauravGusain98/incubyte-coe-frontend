@@ -1,31 +1,31 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import axiosInstance from '../../services/axiosInstance';
 
 const CreateTask = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: '',
-    priority: '',
-    dueDate: '',
-    description: '',
-    startDate: '',
-  });
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     setError('');
-
+    setLoading(true);
     try {
-      await axiosInstance.post('/task/add', form);
+      await axiosInstance.post('/task/add', data);
+      reset(); // Clear form
       navigate('/tasks');
     } catch (err) {
       setError('Failed to create task. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,81 +35,69 @@ const CreateTask = () => {
 
       {error && <div className="text-red-500 mb-2">{error}</div>}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Task Name</label>
           <input
             type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
+            {...register('name', { required: 'Task name is required' })}
             className="border p-2 w-full rounded"
-            required
           />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
         </div>
 
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Priority</label>
           <select
-            name="priority"
-            value={form.priority}
-            onChange={handleChange}
+            {...register('priority', { required: 'Priority is required' })}
             className="border p-2 w-full rounded"
-            required
           >
             <option value="">Select Priority</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
           </select>
+          {errors.priority && <p className="text-red-500 text-sm">{errors.priority.message}</p>}
         </div>
-        
+
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Status</label>
           <select
-            name="status"
-            value={form.status}
-            onChange={handleChange}
+            {...register('status', { required: 'Status is required' })}
             className="border p-2 w-full rounded"
-            required
           >
             <option value="">Select Status</option>
-            <option value="pending">Low</option>
+            <option value="pending">Pending</option>
             <option value="in_progress">In Progress</option>
-            <option value="completed">Complete</option>
+            <option value="completed">Completed</option>
           </select>
+          {errors.status && <p className="text-red-500 text-sm">{errors.status.message}</p>}
         </div>
 
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Start Date</label>
           <input
             type="date"
-            name="startDate"
-            value={form.startDate}
-            onChange={handleChange}
+            {...register('startDate', { required: 'Start date is required' })}
             className="border p-2 w-full rounded"
-            required
           />
+          {errors.startDate && <p className="text-red-500 text-sm">{errors.startDate.message}</p>}
         </div>
 
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Due Date</label>
           <input
             type="date"
-            name="dueDate"
-            value={form.dueDate}
-            onChange={handleChange}
+            {...register('dueDate', { required: 'Due date is required' })}
             className="border p-2 w-full rounded"
-            required
           />
+          {errors.dueDate && <p className="text-red-500 text-sm">{errors.dueDate.message}</p>}
         </div>
 
         <div>
           <label className="flex justify-self-start mb-1 font-medium">Description</label>
           <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
+            {...register('description')}
             rows="4"
             className="border p-2 w-full rounded"
             placeholder="Enter task description..."
@@ -118,9 +106,12 @@ const CreateTask = () => {
 
         <button
           type="submit"
-          className="bg-primary-light text-white px-4 py-2 rounded hover:bg-primary-dark"
+          disabled={loading}
+          className={`bg-primary-light text-white px-4 py-2 rounded hover:bg-primary-dark ${
+            loading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
         >
-          Create Task
+          {loading ? 'Creating...' : 'Create Task'}
         </button>
       </form>
     </div>
