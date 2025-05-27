@@ -7,7 +7,7 @@ import Layout from './components/Layout'
 import './App.css'
 import TasksList from './pages/tasks/TasksList';
 import EditTask from './pages/tasks/EditTask';
-import CreateTask from './pages/tasks/createTask';
+import CreateTask from './pages/tasks/CreateTask';
 
 function App() {
   return (

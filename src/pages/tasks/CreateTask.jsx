@@ -37,7 +37,7 @@ const CreateTask = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-1 font-medium">Task Name</label>
+          <label className="flex justify-self-start mb-1 font-medium">Task Name</label>
           <input
             type="text"
             name="name"
@@ -49,7 +49,7 @@ const CreateTask = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Priority</label>
+          <label className="flex justify-self-start mb-1 font-medium">Priority</label>
           <select
             name="priority"
             value={form.priority}
@@ -65,7 +65,7 @@ const CreateTask = () => {
         </div>
         
         <div>
-          <label className="block mb-1 font-medium">Status</label>
+          <label className="flex justify-self-start mb-1 font-medium">Status</label>
           <select
             name="status"
             value={form.status}
@@ -81,7 +81,7 @@ const CreateTask = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Start Date</label>
+          <label className="flex justify-self-start mb-1 font-medium">Start Date</label>
           <input
             type="date"
             name="startDate"
@@ -93,7 +93,7 @@ const CreateTask = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Due Date</label>
+          <label className="flex justify-self-start mb-1 font-medium">Due Date</label>
           <input
             type="date"
             name="dueDate"
@@ -105,7 +105,7 @@ const CreateTask = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Description</label>
+          <label className="flex justify-self-start mb-1 font-medium">Description</label>
           <textarea
             name="description"
             value={form.description}
