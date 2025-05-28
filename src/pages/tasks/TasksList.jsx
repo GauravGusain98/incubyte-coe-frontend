@@ -10,7 +10,7 @@ const TasksList = () => {
   const [filters, setFilters] = useState({
     search: null,
     sortBy: null,
-    sortOrder: null
+    sortOrder: null,
   });
 
   const fetchTasks = useCallback(async () => {
@@ -52,14 +52,18 @@ const TasksList = () => {
 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
-    setPage(1); // Reset pagination when filters change
+    setPage(1);
   };
 
   return (
-    <div className="py-4">
+    <div className="py-4" data-testid="tasksList">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Task List</h2>
-        <Link to="/task/create" className="bg-brand-light text-white px-4 py-2 rounded hover:bg-brand-dark">
+        <h2 className="text-2xl font-bold" data-testid="heading">Task List</h2>
+        <Link
+          to="/task/create"
+          data-testid="createTaskButton"
+          className="bg-brand-light text-white px-4 py-2 rounded hover:bg-brand-dark"
+        >
           + Create Task
         </Link>
       </div>
@@ -67,11 +71,13 @@ const TasksList = () => {
       <div className="mb-4 flex flex-wrap gap-2">
         <input
           type="text"
+          data-testid="searchInput"
           placeholder="Search..."
           className="border p-2 rounded"
           onChange={(e) => debouncedSearch(e.target.value)}
         />
         <select
+          data-testid="sortBySelect"
           className="border w-[120px] p-2 rounded"
           onChange={(e) => handleFilterChange('sortBy', e.target.value)}
         >
@@ -81,6 +87,7 @@ const TasksList = () => {
           <option value="name">Name</option>
         </select>
         <select
+          data-testid="sortOrderSelect"
           className="border w-[130px] p-2 rounded"
           onChange={(e) => handleFilterChange('sortOrder', e.target.value)}
         >
@@ -90,7 +97,7 @@ const TasksList = () => {
         </select>
       </div>
 
-      <table className="w-full table-fixed border">
+      <table className="w-full table-fixed border" data-testid="tasksTable">
         <thead className="bg-gray-200">
           <tr>
             <th className="w-1/6 md:w-1/2 p-2 text-left">Name</th>
@@ -102,21 +109,29 @@ const TasksList = () => {
         <tbody>
           {tasks.length === 0 ? (
             <tr>
-              <td colSpan="4" className="p-4 text-center text-gray-500">
+              <td colSpan="4" className="p-4 text-center text-gray-500" data-testid="noTasks">
                 No tasks found.
               </td>
             </tr>
           ) : (
             tasks.map((task) => (
-              <tr key={task.id} className="border-b">
-                <td className="w-1/6 md:w-1/2 p-2 text-left">{task.name}</td>
-                <td className="w-1/6 p-2 text-left">{task.priority}</td>
-                <td className="w-1/6 p-2 text-left">{task.dueDate}</td>
-                <td className="w-1/6 p-2 text-left space-x-2">
-                  <Link to={`/tasks/edit/${task.id}`} className="text-primary-dark hover:underline">
+              <tr key={task.id} className="border-b" data-testid={`taskRow-${task.id}`}>
+                <td className="p-2 text-left">{task.name}</td>
+                <td className="p-2 text-left">{task.priority}</td>
+                <td className="p-2 text-left">{task.dueDate}</td>
+                <td className="p-2 text-left space-x-2">
+                  <Link
+                    to={`/tasks/edit/${task.id}`}
+                    className="text-primary-dark hover:underline"
+                    data-testid={`editButton-${task.id}`}
+                  >
                     Edit
                   </Link>
-                  <button onClick={() => handleDelete(task.id)} className="text-danger-dark hover:underline">
+                  <button
+                    onClick={() => handleDelete(task.id)}
+                    className="text-danger-dark hover:underline"
+                    data-testid={`deleteButton-${task.id}`}
+                  >
                     Delete
                   </button>
                 </td>
@@ -128,6 +143,7 @@ const TasksList = () => {
 
       <div className="mt-4 flex gap-2">
         <button
+          data-testid="prevPageButton"
           disabled={page === 1}
           onClick={() => setPage((prev) => Math.max(1, prev - 1))}
           className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
@@ -135,7 +151,8 @@ const TasksList = () => {
           Previous
         </button>
         <button
-          disabled={page === pagination.totalPages}
+          data-testid="nextPageButton"
+          disabled={pagination.totalPages === 0 || page === pagination.totalPages}
           onClick={() => setPage((prev) => prev + 1)}
           className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
         >
