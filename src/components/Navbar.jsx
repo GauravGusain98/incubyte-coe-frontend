@@ -10,14 +10,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md mb-4">
+    <nav data-testid="navbar" className="bg-white shadow-md mb-4">
       <div className="w-full mx-auto px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link to="/" className="md:text-2xl font-bold text-primary-dark cursor-pointer">COE App</Link>
+          <Link to="/" className="md:text-2xl font-bold text-primary-dark cursor-pointer" data-testid="logo-link">
+            COE App
+          </Link>
           <div className="flex gap-4">
-            <Link to="/tasks" className="bg-primary-light hover:bg-primary-dark text-white font-semibold px-4 py-1.5 md:py-md-2 rounded-lg transition duration-300">Task Manager</Link>
+            <Link
+              to="/tasks"
+              data-testid="task-link"
+              className="bg-primary-light hover:bg-primary-dark text-white font-semibold px-4 py-1.5 md:py-md-2 rounded-lg transition duration-300"
+            >
+              Task Manager
+            </Link>
             <button
               onClick={handleLogout}
+              data-testid="logout-button"
               className="bg-danger-light hover:bg-danger-dark text-white font-semibold px-4 py-1.5 md:py-2 rounded-lg transition duration-300"
             >
               Logout
