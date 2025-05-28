@@ -34,6 +34,7 @@ const Login = () => {
             <label htmlFor="email" className="flex justify-self-start mb-1 font-medium">Email</label>
             <input
               id="email"
+              data-testid="email"
               type="email"
               autoComplete="email"
               {...register('email', {
@@ -54,6 +55,7 @@ const Login = () => {
             <label htmlFor="password" className="flex justify-self-start mb-1 font-medium">Password</label>
             <input
               id="password"
+              data-testid="password"
               type="password"
               autoComplete="current-password"
               {...register('password', { required: 'Password is required' })}
@@ -66,6 +68,7 @@ const Login = () => {
 
           <button
             type="submit"
+            data-testid="submit"
             disabled={isSubmitting}
             className={`w-full py-2 rounded text-white transition ${
               isSubmitting ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
@@ -76,7 +79,7 @@ const Login = () => {
 
           <p className="text-sm text-center mt-4">
             Don't have an account?{' '}
-            <Link to="/register" className="text-blue-600 hover:underline">Register</Link>
+            <Link to="/register" data-testid="registerLink" className="text-blue-600 hover:underline">Register</Link>
           </p>
         </form>
       </section>

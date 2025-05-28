@@ -30,8 +30,32 @@ const Register = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="flex justify-self-start mb-1 font-medium">Email</label>
+            <label htmlFor="firstName" className="flex justify-self-start mb-1 font-medium">First Name</label>
             <input
+              id="firstName"
+              data-testid="firstName"
+              type="text"
+              {...register('firstName', { required: 'First name is required' })}
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.email.firstName}</p>}
+          </div>
+          <div>
+            <label htmlFor="lastName" className="flex justify-self-start mb-1 font-medium">Last Name</label>
+            <input
+              id="lastName"
+              data-testid="lastName"
+              type="text"
+              {...register('lastName', { required: 'Last name is required' })}
+              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.email.lastName}</p>}
+          </div>
+          <div>
+            <label htmlFor="email" className="flex justify-self-start mb-1 font-medium">Email</label>
+            <input
+              id="email"
+              data-testid="email"
               type="email"
               {...register('email', { required: 'Email is required' })}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -40,8 +64,10 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="flex justify-self-start mb-1 font-medium">Password</label>
+            <label htmlFor="password" className="flex justify-self-start mb-1 font-medium">Password</label>
             <input
+              id="password"
+              data-testid="password"
               type="password"
               {...register('password', {
                 required: 'Password is required',
@@ -56,8 +82,10 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="flex justify-self-start mb-1 font-medium">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="flex justify-self-start mb-1 font-medium">Confirm Password</label>
             <input
+              id="confirmPassword"
+              data-testid="confirmPassword"
               type="password"
               {...register('confirmPassword', {
                 required: 'Please confirm your password',
@@ -72,6 +100,8 @@ const Register = () => {
           </div>
 
           <button
+            id="submit"
+            data-testid="submit"
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
