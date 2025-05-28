@@ -4,10 +4,9 @@ import Register from '../RegisterPage';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 
-// ✅ Define the mock inside the mock factory
 vi.mock('../../services/authService', () => {
   return {
-    register: vi.fn(), // mock created *inside*
+    register: vi.fn(),
   };
 });
 
