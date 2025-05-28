@@ -8,6 +8,7 @@ import './App.css'
 import TasksList from './pages/tasks/TasksList';
 import EditTask from './pages/tasks/EditTask';
 import CreateTask from './pages/tasks/CreateTask';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
           <Route path="/task/create" element={<PrivateRoute><CreateTask /></PrivateRoute>} />
         </Route>
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
       </Routes>
     </Router>
   );

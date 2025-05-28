@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import useAuthStatus from '../hooks/useAuthStatus';
 
-const PrivateRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
   const { loading, authenticated } = useAuthStatus();
 
   if (loading) {
@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  return authenticated ? children : <Navigate to="/login" />;
+  return authenticated ? <Navigate to="/" /> : children;
 };
 
-export default PrivateRoute;
+export default PublicRoute;
