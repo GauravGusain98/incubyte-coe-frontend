@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axiosInstance from '../services/axiosInstance';
+import axiosBasicInstance from '../services/axiosInstance';
 
 const useAuthStatus = () => {
   const [loading, setLoading] = useState(true);
@@ -8,7 +8,7 @@ const useAuthStatus = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axiosInstance.get('/user/me');
+        await axiosBasicInstance.get('/user/me');
         setAuthenticated(true);
       } catch {
         setAuthenticated(false);

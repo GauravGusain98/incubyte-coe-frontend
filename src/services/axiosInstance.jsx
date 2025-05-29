@@ -4,6 +4,11 @@ import config from '../config';
 const API_BASE = config.apiUrl;
 const REFRESH_TOKEN_URL = config.refreshTokenUrl
 
+const axiosBasicInstance = axios.create({
+  baseURL: API_BASE,
+  withCredentials: true, // Includes cookies in cross-site requests
+});
+
 // Create a reusable Axios instance
 const axiosInstance = axios.create({
   baseURL: API_BASE,
