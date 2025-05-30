@@ -6,18 +6,17 @@ const REFRESH_TOKEN_URL = config.refreshTokenUrl
 
 const axiosBasicInstance = axios.create({
   baseURL: API_BASE,
-  withCredentials: true, // Includes cookies in cross-site requests
+  withCredentials: true,
 });
 
-// Create a reusable Axios instance
 const axiosInstance = axios.create({
   baseURL: API_BASE,
-  withCredentials: true, // Includes cookies in cross-site requests
+  withCredentials: true,
 });
 
-// Response Interceptor
+
 axiosInstance.interceptors.response.use(
-  (response) => response, // Pass through successful responses
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
@@ -27,10 +26,9 @@ axiosInstance.interceptors.response.use(
     );
 
     if (isExcluded) {
-      return Promise.reject(error); // Skip retry logic
+      return Promise.reject(error);
     }
 
-    // Handle 401 Unauthorized errors with refresh flow
     const isUnauthorized = error.response?.status === 401;
     const hasRetried = originalRequest._retry;
 
@@ -38,15 +36,12 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        // Attempt to refresh token
         await axios.post(REFRESH_TOKEN_URL, null, {
           withCredentials: true,
         });
 
-        // Retry the original request with new credentials
         return axiosInstance(originalRequest);
       } catch (refreshError) {
-        // Token refresh failed — redirect to login
         window.location.href = '/login';
         return Promise.reject(refreshError);
       }
